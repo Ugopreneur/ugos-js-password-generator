@@ -128,12 +128,10 @@ function getPasswordOptions() {
 
   // If at least one charcter type is chosen, proceed. If none are, we cant continue
   if (specialChoice || numericChoice || lowercaseChoice || uppercaseChoice) {
-    //this loop generates a random characters from the allCharacters string, and then adds those characters at that index to the "password" string
-    for (var i = 0; i < numberOfCharacters.value; i++) {
-      var randomIndex = Math.floor(Math.random() * allCharacters.length);
-      password += allCharacters[randomIndex];
+    return {
+      password: password,
+      allCharacters: allCharacters
     }
-    console.log("Your passsword is" + password);
   }
   else {
     alert("Sorry, generator failed! You must select atleast one character type");
@@ -168,6 +166,13 @@ function generatePassword() {
       alert("Invalid input! Please enter a number between 10 and 64");
     }
   }
+
+  //this loop generates a random characters from the allCharacters string, and then adds those characters at that index to the "password" string
+  for (var i = 0; i < numberOfCharacters; i++) {
+    var randomIndex = Math.floor(Math.random() * getPasswordOptions.result.allCharacters.length);
+    getPasswordOptions.result.password += getPasswordOptions.result.allCharacters[randomIndex];
+  }
+  return password;
 };
 
 // Get references to the #generate element

@@ -88,17 +88,19 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-//Concatenates all the arrays of character options into one long array
-var allCharacters = specialCharacters.concat(numericCharacters, lowerCasedCharacters, upperCasedCharacters)
+//Concatenates all the arrays of password character options into one long array
+var allCharacters = specialCharacters.concat(numericCharacters, lowerCasedCharacters, upperCasedCharacters);
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // First, ask the user through some password options"
+
+  // First, ask the user how long the password should be via a prompt
   figureInputted = prompt("How many characters would you like your password to contain?");
-  // take choice of number, convert to number 
+
+  // Collect the user's response and convert to an integer
   numberOfCharacters = parseInt(figureInputted);
 
-  // Must be number between 10 and 64. 
+  // Only run the random character generator if the user's number is between 10 and 64
   if (numberOfCharacters >= 10 && numberOfCharacters <= 64) {
     // continue with confirming special characters
     // then log it for whn password will be generated

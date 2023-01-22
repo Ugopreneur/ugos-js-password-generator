@@ -88,29 +88,40 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-//Concatenates all the arrays of password character options into one long array
-var allCharacters = specialCharacters.concat(numericCharacters, lowerCasedCharacters, upperCasedCharacters);
 
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  // Select character type choices
-  confirm("Click OK if you would like to include special characters.");
-  // if OK, put TRUE to specialCharacterChoice variable , if Cancel, dont include
+  // Create an empty varaiable to house all the possible characters in one long string based on user's choices
+  allCharacters = 0;
 
-  confirm("click OK if you would like to include numeric characters.");
-  // if OK, put TRUE to numericChoice variable  , if Cancel, dont include
+  // Prompts to gather user's character choices 
+  var specialChoice = confirm("Click OK if you would like to include special characters.");
+  var numericChoice = confirm("click OK if you would like to include numeric characters.");
+  var lowercaseChoice = confirm("click OK if you would like to include lowercase characters.");
+  var uppercaseChoice = confirm("click OK if you would like to include uppercase characters.");
 
-  confirm("click OK if you would like to include lowercase characters.");
-  // if OK, put TRUE to lowercaseChoice variable   , if Cancel, dont include
+  // As the user selects character choices, add that character set to the long string of possible characters
+  if (specialChoice) {
+    allCharacters = allCharacters + specialCharacters
+  };
 
-  confirm("click OK if you would like to include uppercase characters.");
-  // if OK, put TRUE to uppercaseChoice variable   , if Cancel, dont include
+  if (numericChoice) {
+    allCharacters = allCharacters + numericCharacters
+  };
 
-  // return user choices in an array?
+  if (lowercaseChoice) {
+    allCharacters = allCharacters + lowerCasedCharacters
+  };
+
+  if (uppercaseChoice) {
+    allCharacters = allCharacters + upperCasedCharacters
+  };
+
    // If all 4 are false, then say "Sorry, generator failed! You must select atleast one charcter type" BUT ??? HOWWWWW???
   // If at least one is true, Then generate password based on their choices ...
   // shoudl return a variable passwordText at the end
+  // alert("Great! View your new password below.");
 }
 
 // Function for getting a random element from an array ... 
@@ -157,11 +168,7 @@ function generatePassword() {
       alert("Invalid input! Please enter a number between 10 and 64")
     }
   }
-  
-  
- 
-  // alert("Great! View your new password below.");
-}
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');

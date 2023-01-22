@@ -94,32 +94,6 @@ var allCharacters = specialCharacters.concat(numericCharacters, lowerCasedCharac
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  // First, ask the user how long the password should be via a prompt
-  figureInputted = prompt("How many characters would you like your password to contain?");
-
-  // Collect the user's response and convert to an integer
-  numberOfCharacters = parseInt(figureInputted);
-
-  // Only run the random character generator if the user's number is between 10 and 64
-  if (numberOfCharacters >= 10 && numberOfCharacters <= 64) {
-    // continue with confirming special characters
-    // then log it for whn password will be generated
-  }
-
-  // what to do if user input is not a number between 10 and 64
-  else {
-    if (numberOfCharacters < 10) {
-      // "Password length must be at least 10 characters, but not more than 64"
-    }
-    else if (numberOfCharacters > 64) {
-      // "Password length must be no more than 64 characters, but at least 10"
-    }
-    else {
-      // "Invalid input! Please enter a number between 10 and 64"
-    }
-  }
-  
-
   // Select character type choices
   confirm("Click OK if you would like to include special characters.");
   // if OK, put TRUE to specialCharacterChoice variable , if Cancel, dont include
@@ -133,7 +107,10 @@ function getPasswordOptions() {
   confirm("click OK if you would like to include uppercase characters.");
   // if OK, put TRUE to uppercaseChoice variable   , if Cancel, dont include
 
-  // return user choices in an array
+  // return user choices in an array?
+   // If all 4 are false, then say "Sorry, generator failed! You must select atleast one charcter type" BUT ??? HOWWWWW???
+  // If at least one is true, Then generate password based on their choices ...
+  // shoudl return a variable passwordText at the end
 }
 
 // Function for getting a random element from an array ... 
@@ -155,11 +132,35 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  // Collect the users choices by running the getPasswordOptions() function
-  // If all 4 are false, then say "Sorry, generator failed! You must select atleast one charcter type" BUT ??? HOWWWWW???
-  // If at least one is true, Then generate password based on their choices ...
-  // shoudl return a variable passwordText at the end
-  alert("Great! View your new password below.");
+  // First, ask the user how long the password should be via a prompt
+  figureInputted = prompt("How many characters would you like your password to contain?");
+
+  // Collect the user's response and convert to an integer
+  numberOfCharacters = parseInt(figureInputted);
+
+  // Only run the random character generator if the user's response is between 10 and 64
+  if (numberOfCharacters >= 10 && numberOfCharacters <= 64) {
+
+    // continue with asking the user the types of characters they would like
+    getPasswordOptions();
+  }
+
+  // If user's response is not a number between 10 and 64, then reject it
+  else {
+    if (numberOfCharacters < 10) {
+      alert("Password must be at least 10 characters, but not more than 64")
+    }
+    else if (numberOfCharacters > 64) {
+      alert("Password must be no more than 64 characters, but at least 10")
+    }
+    else {
+      alert("Invalid input! Please enter a number between 10 and 64")
+    }
+  }
+  
+  
+ 
+  // alert("Great! View your new password below.");
 }
 
 // Get references to the #generate element

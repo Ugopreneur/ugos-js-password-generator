@@ -88,11 +88,12 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-Then it concatenates all the string into one variable allChars
+//Concatenates all the arrays of character options into one long array
+var allCharacters = specialCharacters.concat(numericCharacters, lowerCasedCharacters, upperCasedCharacters)
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // First, ask the user through some password options
+  // First, ask the user through some password options"
   figureInputted = prompt("How many characters would you like your password to contain?");
   // take choice of number, convert to number 
   numberOfCharacters = parseInt(figureInputted);

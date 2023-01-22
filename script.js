@@ -118,22 +118,21 @@ function getPasswordOptions() {
     allCharacters = allCharacters + upperCasedCharacters;
   }
 
-  // If users says no to all 4 options, we cant continue
+  // If at least one charcter type is chose, proceed. If none are, we cant continue
   if (specialChoice || numericChoice || lowercaseChoice || uppercaseChoice) {
-    getRandom();
+    getRandom(allCharacters);
   }
   else {
     alert("Sorry, generator failed! You must select atleast one character type");
   }
-  
-  // should return a variable passwordText at the end
-  // alert("Great! View your new password below.");
 };
 
-// Function for getting a random element from an array ... 
-function getRandom(arr) {
-  // first, create an empty string called "password"
+// Function to piack a random password from a string of possible characters ... 
+function getRandom(string) {
+
+  // first, create an empty string called "password" which will be updated by my code
   var password = "";
+
   // this loop generates a random index number, based on the length of the chars string, and then adds the character at that index to the "password" string
   for (var i = 0; i < numberOfCharacters.value; i++) {
     var randomIndex = Math.floor(Math.random() * chars.length); //chars is absent here. It is a variable that holds a long string to point of characters to choose from

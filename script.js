@@ -102,7 +102,7 @@ var generatedPassword = "";
 
 
 // Function to prompt user for password options
-function getPasswordOptions(numberOfCharacters) {
+function getOptionsAndRunPasswordGenerator(numberOfCharacters) {
 
   // Prompts to gather user's character choices 
   var specialChoice = confirm("Click OK if you would like to include special characters.");
@@ -150,7 +150,7 @@ function getPasswordOptions(numberOfCharacters) {
       var randomCharacter = Math.floor(Math.random() * allCharacters.length);
       generatedPassword += allCharacters[randomCharacter];
     }
-
+   
   }
   else {
     alert("Sorry, generator failed! You must select atleast one character type");
@@ -170,7 +170,7 @@ function generatePassword() {
   if (numberOfCharacters >= 10 && numberOfCharacters <= 64) {
 
     // continue with asking the user the types of characters they would like
-    getPasswordOptions(numberOfCharacters);
+    getOptionsAndRunPasswordGenerator(numberOfCharacters);
   }
 
   // If user's response is not a number between 10 and 64, then reject it
@@ -192,7 +192,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var generatedPassword = generatePassword();
+  generatePassword();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = generatedPassword;

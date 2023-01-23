@@ -102,7 +102,7 @@ var generatedPassword = "";
 
 
 // Function to prompt user for password options
-function getPasswordOptions() {
+function getPasswordOptions(numberOfCharacters) {
 
   // Prompts to gather user's character choices 
   var specialChoice = confirm("Click OK if you would like to include special characters.");
@@ -140,11 +140,11 @@ function getPasswordOptions() {
   if (specialChoice || numericChoice || lowercaseChoice || uppercaseChoice) {
 
     //this loop generates a random characters from the allCharacters string, and then adds those characters at that index to the "password" string
-  for (var i = 0; i < numberOfCharacters; i++) {
-    var randomIndex = Math.floor(Math.random() * allCharacters.length);
-    generatedPassword += allCharacters[randomIndex];
-  }
-  return generatedPassword;
+    for (var i = 0; i < numberOfCharacters; i++) {
+      var randomCharacter = Math.floor(Math.random() * allCharacters.length);
+      generatedPassword += allCharacters[randomCharacter];
+    }
+
   }
   else {
     alert("Sorry, generator failed! You must select atleast one character type");
@@ -158,13 +158,13 @@ function generatePassword() {
   figureInputted = prompt("How many characters would you like your password to contain?");
 
   // Collect the user's response and convert to an integer
-  numberOfCharacters = parseInt(figureInputted);
+  var numberOfCharacters = parseInt(figureInputted);
 
   // Only run the random character generator if the user's response is between 10 and 64
   if (numberOfCharacters >= 10 && numberOfCharacters <= 64) {
 
     // continue with asking the user the types of characters they would like
-    getPasswordOptions();
+    getPasswordOptions(numberOfCharacters);
   }
 
   // If user's response is not a number between 10 and 64, then reject it

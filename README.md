@@ -1,5 +1,5 @@
 # Ugo's JS Password Generator
-### A simple to allow users generate a random password based on criteria they’ve selected
+### A simple application to allow users generate a random password based on criteria they’ve selected
 
 ## Table of Contents
 

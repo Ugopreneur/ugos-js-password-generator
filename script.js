@@ -98,7 +98,7 @@ var upperCasedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var allCharacters = "";
 
 // Create an empty string to house my generated password
-var generatedPassword = "";
+generatedPassword = "";
 
 
 // Function to prompt user for password options
@@ -187,6 +187,11 @@ function generatePassword() {
   }
 };
 
+// Reset generatedPassword variable to empty after generating a password for the user so that a new one can be generated
+function resetPassword() {
+  generatedPassword = "";
+}
+
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
@@ -196,6 +201,7 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   passwordText.value = generatedPassword;
+  resetPassword();
 }
 
 // Add event listener to generate button

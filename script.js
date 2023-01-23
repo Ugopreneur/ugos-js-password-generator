@@ -89,9 +89,9 @@
 // ];
 
 var specialCharacters = "@%+\/'!#$^?:,)(}{][~-_.";
-var numericCharacters = "0123456789"
-var lowerCasedCharacters = "abcdefghijklmnopqrstuvwxyz"
-var upperCasedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var numericCharacters = "0123456789";
+var lowerCasedCharacters = "abcdefghijklmnopqrstuvwxyz";
+var upperCasedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
 // Create an empty varaiable to house all the possible characters in one long string based on user's choices
@@ -109,38 +109,44 @@ function getPasswordOptions(numberOfCharacters) {
   var numericChoice = confirm("click OK if you would like to include numeric characters.");
   var lowercaseChoice = confirm("click OK if you would like to include lowercase characters.");
   var uppercaseChoice = confirm("click OK if you would like to include uppercase characters.");
+  var spacesTakenUp  = 0; //This variable is to count the number of spaces to be taken up by the first few character types chosen by the user
 
   // As the user selects character choices, add that character set to the long string of possible characters
   // And also ensure that there is at least one of each of the selected character types in the generated password
   if (specialChoice) {
     allCharacters = allCharacters + specialCharacters;
     generatedPassword += specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+    spacesTakenUp = spacesTakenUp + 1;
     // console.log(allCharacters);
   }
 
   if (numericChoice) {
     allCharacters = allCharacters + numericCharacters;
     generatedPassword += numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
+    spacesTakenUp = spacesTakenUp + 1;
     // console.log(allCharacters);
   }
 
   if (lowercaseChoice) {
     allCharacters = allCharacters + lowerCasedCharacters;
     generatedPassword += lowerCasedCharacters[Math.floor(Math.random() * lowerCasedCharacters.length)];
+    spacesTakenUp = spacesTakenUp + 1;
     // console.log(allCharacters);
   }
 
   if (uppercaseChoice) {
     allCharacters = allCharacters + upperCasedCharacters;
     generatedPassword += upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)];
+    spacesTakenUp = spacesTakenUp + 1;
     // console.log(allCharacters);
+    // console.log("Spaces taken up is now " + spacesTakenUp)
   }
 
   // If at least one charcter type is chosen, proceed. If none are, we cant continue
   if (specialChoice || numericChoice || lowercaseChoice || uppercaseChoice) {
 
     //this loop generates a random characters from the allCharacters string, and then adds those characters at that index to the "password" string
-    for (var i = 0; i < numberOfCharacters; i++) {
+    for (var i = 0; i < numberOfCharacters - spacesTakenUp; i++) {
       var randomCharacter = Math.floor(Math.random() * allCharacters.length);
       generatedPassword += allCharacters[randomCharacter];
     }
